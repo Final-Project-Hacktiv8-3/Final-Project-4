@@ -1,16 +1,25 @@
-import { MovieCard } from "@components/molecules";
+import { MovieSection } from "@components/organisms";
 import { useFetchData } from "@hooks";
 
 export const Home = () => {
-  const { data } = useFetchData("/discover/movie");
+  const { data: popularMovies } = useFetchData("/movie/popular");
+  const { data: topRatedMovies } = useFetchData("/movie/top_rated");
+  const { data: upcomingMovies } = useFetchData("/movie/upcoming");
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 px-3 sm:grid-cols-3 md:grid-cols-4 md:px-6 lg:grid-cols-5">
-        {data?.results?.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+      <MovieSection
+        data={popularMovies?.results.slice(0, 10)}
+        title="Popular"
+      />
+      <MovieSection
+        data={topRatedMovies?.results.slice(0, 10)}
+        title="Top Rated"
+      />
+      <MovieSection
+        data={upcomingMovies?.results.slice(0, 10)}
+        title="Upcoming"
+      />
     </>
   );
 };
