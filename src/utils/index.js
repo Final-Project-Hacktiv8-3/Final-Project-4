@@ -2,6 +2,9 @@ export const getImageUrl = (path) => {
   const width = 200;
   return `${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}/w${width}${path}`;
 };
+export const getHeroImgUrl = (path) => {
+  return `${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}/original${path}`;
+};
 
 export const formattedDate = (date) => {
   if (!date) return "-";
