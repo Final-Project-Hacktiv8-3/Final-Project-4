@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { formattedDate, getImageUrl } from "@utils";
+import { formattedDate, getHeroImgUrl } from "@utils";
 
 export const MovieCard = ({ movie }) => {
-  const { id, poster_path, title, release_date } = movie;
+  const { id, title, release_date, backdrop_path } = movie;
 
   return (
     <Link
       to={`/movie/${id}`}
-      className="group flex w-full flex-col transition hover:scale-105"
+      className="group flex w-full flex-col transition duration-300 ease-in-out hover:scale-105"
     >
       <img
-        src={getImageUrl(poster_path)}
+        src={getHeroImgUrl(backdrop_path, "w400")}
         alt={`Poster of ${title}`}
-        className="aspect-[9/14] rounded object-cover"
+        className="aspect-[14/8] rounded-lg object-cover duration-500 hover:brightness-75"
         title={title}
       />
       <div className="px-1 py-2">
         <h3
-          className="truncate text-sm font-bold text-slate-900 group-hover:text-purple-600 dark:text-slate-200"
+          className="-mb-1 truncate font-bold text-slate-900 group-hover:text-purple-600 dark:text-slate-200"
           title={title}
         >
           {title}
         </h3>
-        <span className="text-xs text-slate-900 dark:text-slate-200">
+        <span className="text-sm font-medium tracking-tight text-slate-700 dark:text-slate-400">
           {formattedDate(release_date)}
         </span>
       </div>
