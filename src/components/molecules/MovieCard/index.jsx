@@ -19,12 +19,14 @@ export const MovieCard = ({ movie }) => {
       />
       <div className="px-1 py-2">
         <h3
-          className="truncate text-sm font-bold group-hover:text-purple-600"
+          className="truncate text-sm font-bold text-slate-900 group-hover:text-purple-600 dark:text-slate-200"
           title={title}
         >
           {title}
         </h3>
-        <span className="text-xs">{formattedDate(release_date)}</span>
+        <span className="text-xs text-slate-900 dark:text-slate-200">
+          {formattedDate(release_date)}
+        </span>
       </div>
     </Link>
   );

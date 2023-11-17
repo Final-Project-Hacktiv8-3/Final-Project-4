@@ -1,4 +1,5 @@
 import { MovieSection, Navbar } from "@components/organisms";
+import { Hero } from "@components/organisms/Hero";
 import { useFetchData } from "@hooks";
 
 export const Home = () => {
@@ -9,6 +10,7 @@ export const Home = () => {
   return (
     <>
       <Navbar />
+      <Hero />
       <MovieSection
         data={popularMovies?.results.slice(0, 10)}
         title="Popular"
