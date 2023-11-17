@@ -2,13 +2,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useFetchData } from "@hooks/index";
-import { getHeroImgUrl } from "@utils/index";
-import { Button } from "@components/atoms";
 import { Link } from "react-router-dom";
+
+import { useFetchData } from "@hooks";
+import { getHeroImgUrl } from "@utils";
+import { Button } from "@components/atoms";
+
 export const Hero = () => {
   const { data } = useFetchData("/movie/popular");
-  console.log(data?.results);
+
   return (
     <section className="flex items-center bg-white dark:bg-zinc-900">
       <Swiper
@@ -35,7 +37,9 @@ export const Hero = () => {
               <div className="absolute bottom-0 left-[20rem] top-[20rem] flex h-full w-[50vw] flex-col items-start justify-start text-left    text-white">
                 <div className="date flex flex-col gap-5 ">
                   <h1 className="mt-2 text-3xl">{item?.title}</h1>
-                  <h1 className="mt-2 text-xl">{item?.overview}</h1>
+                  <h1 className="mt-2 line-clamp-2 text-xl">
+                    {item?.overview}
+                  </h1>
                   <Button className="bg-red-700 p-2 text-xl" size="w-20 h-fit ">
                     <Link to={`/movie/${item.id}`}>Detail</Link>
                   </Button>

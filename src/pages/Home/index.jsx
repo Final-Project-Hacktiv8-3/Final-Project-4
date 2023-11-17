@@ -12,15 +12,15 @@ export const Home = () => {
       <Navbar />
       <Hero />
       <MovieSection
-        data={popularMovies?.results.slice(0, 10)}
+        movies={popularMovies?.results.slice(0, 8)}
         title="Popular"
       />
       <MovieSection
-        data={topRatedMovies?.results.slice(0, 10)}
+        movies={topRatedMovies?.results.slice(0, 8)}
         title="Top Rated"
       />
       <MovieSection
-        data={upcomingMovies?.results.slice(0, 10)}
+        movies={upcomingMovies?.results.slice(0, 8)}
         title="Upcoming"
       />
     </>
