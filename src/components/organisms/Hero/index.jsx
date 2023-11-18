@@ -3,14 +3,12 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { useFetchData } from "@hooks";
 import { getHeroImgUrl } from "@utils";
 import { Button } from "@components/atoms";
 
-export const Hero = () => {
-  const { data } = useFetchData("/movie/popular");
-
+export const Hero = ({ data }) => {
   return (
     <section className="flex items-center bg-white dark:bg-zinc-900">
       <Swiper
@@ -26,7 +24,7 @@ export const Hero = () => {
         modules={[Autoplay, Pagination]}
         className="mySwiper  "
       >
-        {data?.results.slice(0, 3).map((item, idx) => (
+        {data?.map((item, idx) => (
           <SwiperSlide key={idx} className="mt-[10vh] flex justify-center">
             <div className="relative flex items-center justify-center">
               <img
@@ -51,4 +49,8 @@ export const Hero = () => {
       </Swiper>
     </section>
   );
+};
+
+Hero.propTypes = {
+  data: PropTypes.array,
 };
