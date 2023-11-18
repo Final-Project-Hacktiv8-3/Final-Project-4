@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import empty from '../../../assets/empty.jpg'
 
 import { formattedDate, getHeroImgUrl } from "@utils";
 
@@ -12,7 +13,7 @@ export const MovieCard = ({ movie }) => {
       className="group flex w-full flex-col transition duration-300 ease-in-out hover:scale-105"
     >
       <img
-        src={getHeroImgUrl(backdrop_path, "w400")}
+        src={backdrop_path ? getHeroImgUrl(backdrop_path, "w400") :empty }
         alt={`Poster of ${title}`}
         className="aspect-[14/8] rounded-lg object-cover duration-500 hover:brightness-75"
         title={title}
