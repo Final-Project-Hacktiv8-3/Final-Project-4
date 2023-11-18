@@ -13,7 +13,7 @@ export const Navbar = () => {
   };
   return (
     <header
-      className={`fixed z-50 flex h-[8vh] w-full items-center justify-between bg-white px-3 font-semibold text-slate-500 duration-300 ease-out  dark:bg-zinc-900 md:px-16`}
+      className={`sticky top-0 z-50 flex h-[8vh] w-full items-center justify-between bg-white px-3 font-semibold text-slate-500 duration-300 ease-out  dark:bg-zinc-900 md:px-16`}
     >
       <NavLink to="/">
         <figure>
