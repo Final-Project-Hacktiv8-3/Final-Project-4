@@ -1,18 +1,16 @@
-import { MovieDetail, Navbar } from "@components/organisms";
-import { useFetchData } from "@hooks/index";
 import { useParams } from "react-router-dom";
+
+import { MovieDetail } from "@components/organisms";
+import { useFetchData } from "@hooks/index";
 
 export const Detail = () => {
   const { id } = useParams();
 
   const { data } = useFetchData(`/movie/${id}?append_to_response=videos`);
 
-  console.log(data);
-
   return (
-    <>
-      <Navbar />
+    <main>
       <MovieDetail title={data?.title} overview={data?.overview} />
-    </>
+    </main>
   );
 };
