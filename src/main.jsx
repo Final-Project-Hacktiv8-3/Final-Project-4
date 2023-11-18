@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { Home, Detail } from "@pages";
+import { Home, Detail,Search } from "@pages";
 import { Layout } from "@components/templates";
 import "./index.css";
 
@@ -17,6 +17,10 @@ const route = createBrowserRouter([
       {
         path: "movie/:id",
         element: <Detail />,
+      },
+      {
+        path: "search/:nama",
+        element: <Search />,
       },
     ],
   },
