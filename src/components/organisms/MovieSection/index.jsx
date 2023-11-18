@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const MovieSection = ({ title, movies }) => {
   return (
-    <section className="w-full bg-white  px-3  dark:bg-zinc-900 md:px-24">
+    <section>
       <div className="flex items-center justify-between py-6">
         <h2 className="text-4xl font-bold text-slate-900 dark:text-white ">
           {title}

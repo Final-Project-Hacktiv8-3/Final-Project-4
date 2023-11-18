@@ -8,7 +8,7 @@ export const Home = () => {
   const { data: upcomingMovies } = useFetchData("/movie/upcoming");
 
   return (
-    <main>
+    <>
       <Hero data={popularMovies?.results.slice(0, 3)} />
       <MovieSection
         movies={popularMovies?.results.slice(0, 8)}
@@ -22,6 +22,6 @@ export const Home = () => {
         movies={upcomingMovies?.results.slice(0, 8)}
         title="Upcoming"
       />
-    </main>
+    </>
   );
 };

@@ -25,14 +25,14 @@ export const Hero = ({ data }) => {
         className="mySwiper  "
       >
         {data?.map((item, idx) => (
-          <SwiperSlide key={idx} className="mt-[10vh] flex justify-center">
+          <SwiperSlide key={idx} className="mt-6 flex justify-center">
             <div className="relative flex items-center justify-center">
               <img
                 src={getHeroImgUrl(item.backdrop_path)}
                 alt=""
-                className="w-[90%] rounded-lg  object-cover  brightness-50 md:w-[70%]"
+                className="w-[90%] rounded-lg  object-cover  brightness-50 md:w-[90%]"
               />
-              <div className="absolute bottom-0 left-[20rem] top-[20rem] flex h-full w-[50vw] flex-col items-start justify-start text-left    text-white">
+              <div className="absolute bottom-0 left-[15rem] top-[20rem] flex h-full w-[50vw] flex-col items-start justify-start text-left    text-white">
                 <div className="date flex flex-col gap-5 ">
                   <h1 className="mt-2 text-3xl">{item?.title}</h1>
                   <h1 className="mt-2 line-clamp-2 text-xl">

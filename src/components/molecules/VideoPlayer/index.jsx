@@ -8,7 +8,7 @@ export const VideoPlayer = ({ url }) => {
         url={url}
         className="absolute inset-0"
         width="100%"
-        height="100%"
+        height="80%"
         controls
       />
     </div>
