@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 
-import { MovieDetail, MovieSection } from "@components/organisms";
+import { MovieDetail } from "@components/organisms";
+import { Sidebar } from "@components/molecules";
 import { useFetchData } from "@hooks";
 import { getYoutubeVideoUrl } from "@utils";
 import axios from "axios";
@@ -48,6 +49,9 @@ export const Detail = () => {
 
   return (
     <>
+     
+<div className="flex">
+      
       <MovieDetail
         title={data?.title}
         tagline={data?.tagline}
@@ -61,10 +65,23 @@ export const Detail = () => {
         writers={getWriters}
         casts={getCasts}
       />
-       <MovieSection
-        movies={similiarity?.slice(0, 8)}
-        title="Similiarity"
-      />
+      <div className="relative w-96 mx-5">
+        <h3 className="text-xl font-bold mb-4">Related Movies</h3>
+        <div className="grid sticky top-0 overflow-y-auto gap-4">
+          {similiarity.map(similiars => (
+            <>
+            
+            <Sidebar movies={similiars} />
+            </>
+
+          ))}
+
+        </div>
+      </div>
+     
+
+  </div>
+
     </>
   );
 };
