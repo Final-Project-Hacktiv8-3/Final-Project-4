@@ -79,7 +79,9 @@ export const MovieDetail = ({
           <h3 className="text-lg font-bold lg:text-2xl">Directors</h3>
           {
             <span className="lg:font-medium">
-              {directors?.map((director) => director.name).join(" • ")}
+              {directors?.length === 0
+                ? "-"
+                : directors?.map((director) => director.name).join(" • ")}
             </span>
           }
         </div>
@@ -87,14 +89,18 @@ export const MovieDetail = ({
           <h3 className="text-lg font-bold lg:text-2xl">Writers</h3>
           {
             <span className="lg:font-medium">
-              {writers?.map((writer) => writer.name).join(" • ")}
+              {writers?.length === 0
+                ? "-"
+                : writers?.map((writer) => writer.name).join(" • ")}
             </span>
           }
         </div>
         <div className="border-t border-slate-600">
           <h3 className="text-lg font-bold lg:text-2xl">Casts</h3>
           <span className="lg:font-medium">
-            {casts?.map((cast) => cast.name).join(" • ")}
+            {casts?.length === 0
+              ? "-"
+              : casts?.map((cast) => cast.name).join(" • ")}
           </span>
         </div>
       </section>
