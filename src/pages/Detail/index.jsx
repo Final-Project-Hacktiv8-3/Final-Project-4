@@ -1,36 +1,40 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import { MovieDetail, MovieSection } from "@components/organisms";
-import { useFetchData } from "@hooks";
 import { getYoutubeVideoUrl } from "@utils";
-import axios from "axios";
-import { useEffect,useState } from "react";
+import { useFetchData } from "@hooks/index";
+import { ErrorMessage, LoadingSpinner } from "@components/atoms";
 
 export const Detail = () => {
   const { id } = useParams();
-  const [similiarity, setSimiliarity] = useState([])
+  const [similiarity, setSimiliarity] = useState([]);
 
-  const { data } = useFetchData(
+  const { data, isLoading, error } = useFetchData(
     `/movie/${id}?append_to_response=videos,credits`,
   );
 
   useEffect(() => {
     const fetchSimiliar = async () => {
       const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/similar`,
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+        `https://api.themoviedb.org/3/movie/${id}/similar`,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+          },
         },
-      }
-      )
-      setSimiliarity(res.data.results)
-    }
+      );
+      setSimiliarity(res.data.results);
+    };
 
     fetchSimiliar();
-   
-  }, [])
+  }, [id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const getUrlTrailer = data?.videos?.results.filter(
     (video) => video.type === "Trailer",
@@ -45,6 +49,22 @@ export const Detail = () => {
   );
 
   const getCasts = data?.credits?.cast.slice(0, 4);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <ErrorMessage message={error.message} />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -61,10 +81,7 @@ export const Detail = () => {
         writers={getWriters}
         casts={getCasts}
       />
-       <MovieSection
-        movies={similiarity?.slice(0, 8)}
-        title="Similiarity"
-      />
+      <MovieSection movies={similiarity?.slice(0, 8)} title="Similiarity" />
     </>
   );
 };
