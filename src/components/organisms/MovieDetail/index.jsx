@@ -31,7 +31,7 @@ export const MovieDetail = ({
   return (
     <article className="flex w-full flex-col gap-y-4">
       {/* Title */}
-      <section className="w-[90%]">
+      <section className="w-full">
         <h1 className="mb-2 text-2xl font-semibold md:text-5xl">{title}</h1>
         <span className="italic text-slate-700 dark:text-slate-400 md:text-lg">{`"${tagline}"`}</span>
       </section>
@@ -74,7 +74,7 @@ export const MovieDetail = ({
         </div>
       </section>
       {/* Credits */}
-      <section className="flex flex-col gap-y-2">
+      <section className="mb-2 flex flex-col gap-y-2">
         <div className="border-t border-slate-600">
           <h3 className="text-lg font-bold lg:text-2xl">Directors</h3>
           {

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 import { MovieDetail, SideBar } from "@components/organisms";
 import { getYoutubeVideoUrl } from "@utils";
@@ -9,28 +9,10 @@ import { ErrorMessage, LoadingSpinner } from "@components/atoms";
 
 export const Detail = () => {
   const { id } = useParams();
-  const [similiarity, setSimiliarity] = useState([]);
 
   const { data, isLoading, error } = useFetchData(
-    `/movie/${id}?append_to_response=videos,credits`,
+    `/movie/${id}?append_to_response=videos,credits,similar`,
   );
-
-  useEffect(() => {
-    const fetchSimiliar = async () => {
-      const res = await axios.get(
-        `https://api.themoviedb.org/3/movie/${id}/similar`,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-          },
-        },
-      );
-      setSimiliarity(res.data.results);
-    };
-
-    fetchSimiliar();
-  }, [id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,37 +50,29 @@ export const Detail = () => {
 
   return (
     <>
-      <div className="flex">
-      
-      <MovieDetail
-        title={data?.title}
-        tagline={data?.tagline}
-        url={getYoutubeVideoUrl(getUrlTrailer)}
-        poster_path={data?.poster_path}
-        genres={data?.genres}
-        release_date={data?.release_date}
-        runtime={data?.runtime}
-        overview={data?.overview}
-        directors={getDirectors}
-        writers={getWriters}
-        casts={getCasts}
-      />
-      <div className="relative w-96 mx-5">
-        <h3 className="text-xl font-bold mb-4">Related Movies</h3>
-        <div className="grid sticky top-0 overflow-y-auto gap-4">
-          {similiarity.map(similiars => (
-            <>
-            
-            <SideBar movies={similiars} />
-            </>
-
-          ))}
-
+      <div className="grid grid-cols-1 gap-x-2 lg:grid-cols-[1fr_350px]">
+        <MovieDetail
+          title={data?.title}
+          tagline={data?.tagline}
+          url={getYoutubeVideoUrl(getUrlTrailer)}
+          poster_path={data?.poster_path}
+          genres={data?.genres}
+          release_date={data?.release_date}
+          runtime={data?.runtime}
+          overview={data?.overview}
+          directors={getDirectors}
+          writers={getWriters}
+          casts={getCasts}
+        />
+        <div className="w-full lg:px-2">
+          <h3 className="mb-4 text-xl font-bold">Related Movies</h3>
+          <div className="flex h-screen flex-col gap-y-2 overflow-y-scroll">
+            {data?.similar?.results?.map((similiars) => (
+              <SideBar movies={similiars} key={similiars.id} />
+            ))}
+          </div>
         </div>
       </div>
-     
-
-  </div>
     </>
   );
 };
