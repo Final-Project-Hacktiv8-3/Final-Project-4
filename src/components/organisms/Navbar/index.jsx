@@ -8,6 +8,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const handleKeyPresed = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       navigate(`/search/${search}`);
     }
   };
