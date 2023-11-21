@@ -25,7 +25,7 @@ export const Hero = ({ data }) => {
         className="mySwiper  "
       >
         {data?.map((item, idx) => (
-          <SwiperSlide key={idx} className="mt-6 flex justify-center">
+          <SwiperSlide key={idx} className="flex justify-center">
             <div className="relative flex items-center justify-center">
               <img
                 src={getHeroImgUrl(item.backdrop_path)}
