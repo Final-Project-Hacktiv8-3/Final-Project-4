@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { Home, Detail, Search, About, NotFound } from "@pages";
 import { Layout } from "@components/templates";
 import "./index.css";
+import { About, Choice, Detail, Genre, Home, NotFound, Search } from "./pages";
 
 const route = createBrowserRouter([
   {
@@ -29,6 +29,14 @@ const route = createBrowserRouter([
       {
         path: "*",
         element: <NotFound />,
+      },
+      {
+        path: "/genre/:id/:name",
+        element: <Genre />,
+      },
+      {
+        path: "/:choice",
+        element: <Choice />,
       },
     ],
   },
