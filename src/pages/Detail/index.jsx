@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import axios from "axios";
 
-import { MovieDetail, SideBar } from "@components/organisms";
+import { MovieDetail } from "@components/organisms";
 import { getYoutubeVideoUrl } from "@utils";
 import { useFetchData } from "@hooks/index";
 import { ErrorMessage, LoadingSpinner } from "@components/atoms";
+import { Related } from "@components/organisms/Related";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -68,7 +69,7 @@ export const Detail = () => {
           <h3 className="mb-4 text-xl font-bold">Related Movies</h3>
           <div className="flex h-screen flex-col gap-y-2 overflow-y-scroll">
             {data?.similar?.results?.map((similiars) => (
-              <SideBar movies={similiars} key={similiars.id} />
+              <Related movies={similiars} key={similiars.id} />
             ))}
           </div>
         </div>

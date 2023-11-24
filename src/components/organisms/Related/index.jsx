@@ -4,11 +4,14 @@ import PropTypes from "prop-types";
 import { getHeroImgUrl, getYearFromDate } from "@utils/index";
 import empty from "../../../assets/empty.jpg";
 
-export const SideBar = ({ movies }) => {
+export const Related = ({ movies }) => {
   const { id, title, release_date, backdrop_path, overview } = movies;
   return (
     <>
-      <Link to={`/movie/${id}`} className="h-22 relative flex w-full gap-x-2 px-2">
+      <Link
+        to={`/movie/${id}`}
+        className="h-22 relative flex w-full gap-x-2 px-2"
+      >
         <div className="relative flex-none self-center">
           <img
             src={backdrop_path ? getHeroImgUrl(backdrop_path, "w400") : empty}
@@ -31,6 +34,6 @@ export const SideBar = ({ movies }) => {
   );
 };
 
-SideBar.propTypes = {
+Related.propTypes = {
   movies: PropTypes.object,
 };
