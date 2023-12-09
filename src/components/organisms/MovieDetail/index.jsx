@@ -51,7 +51,7 @@ export const MovieDetail = ({
         </figure>
         <div className="text-sm md:text-base">
           {genres?.map((genre) => (
-            <Link key={genre.id} to={`/genre/${genre.id}`}>
+            <Link key={genre.id} to={`/genre/${genre.id}/${genre.name}`}>
               <span className="mb-2 mr-2 inline-block rounded-lg bg-slate-700 px-2 py-1 text-white transition-colors hover:bg-purple-600">
                 {genre.name}
               </span>
